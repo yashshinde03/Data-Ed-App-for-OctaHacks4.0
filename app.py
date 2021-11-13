@@ -1,7 +1,7 @@
 from matplotlib.pyplot import savefig
 import streamlit as st
 
-page = st.sidebar.selectbox("What do you want to see?", ("Home","Stock Analysis","Customisable Neural Network", "World Population"))
+page = st.sidebar.selectbox("What do you want to see?", ("Home","Stock Analysis","Customisable Neural Network", "World Airlines", "Word Cloud Generator"))
 
 
 if page == "Home":
@@ -14,7 +14,7 @@ if page == "Home":
         "\n\nIf you've come here for the first time, let's get you habituated to this app first!\n\nThis is an app created by three students to help you understand the wonders of data visualisation, how it's done and how you yourself can try it out!\n\n"
         )
     st.markdown(
-        "### Meet the App-Makers!\n\n|Name|GitHub Profile|\n|----|----|\n|Aishwarya Funaguskar|[Aishwarya]()|\n|Ishaan Sunita Pandita|[EmperorArthurIX]()|\n|Yash Shinde|[Yash Shinde]()|\n\n"
+        "### Meet the App-Makers!\n\n|Name|GitHub Profile|\n|----|----|\n|Aishwarya Funaguskar|[Aishwarya122222e3](https://github.com/Aishwarya122222e3)|\n|Ishaan Sunita Pandita|[EmperorArthurIX](https://github.com/EmperorArthurIX)|\n|Yash Shinde|[yashshinde03](https://github.com/yashshinde03)|\n\n"
         )
     
     st.write(
@@ -51,7 +51,11 @@ if page == "Customisable Neural Network":
         "\n\nUsing Neural Networks, we can transform image recognition into a computer-performable task. Basically, Neural Network gave your computer *eyes* **and** gave those eyes some *functionality*.",
         "On a more advanced level, this is known as [OCR](https://en.wikipedia.org/wiki/Optical_character_recognition), that is **O**ptical **C**haracter **R**ecognition.",
         )
-    
+    st.write(
+        "### Note to our beloved audience",
+        "\n\nWe cannot add this function to our app right now, because it is very heavy :( and we have no money.",
+        "\n\nBut fret not, you can find the github repository of this app [here](https://github.com/EmperorArthurIX/Customisable-Neural-Network-App)"
+        )
     # st.markdown('<dl><dt>What are we checking?</dt><dd>We have used the <a href = "https://en.wikipedia.org/wiki/MNIST_database" target=_blank>MNIST Dataset</a> containing images of handwritten digits from 0 to 9 to train our model.</dd><dt>Why Neural Networks?</dt><dd>Using Neural Networks, we can transform image recognition into a computer-performable task. Basically, Neural Network gave your computer *eyes* **and** gave those eyes some *functionality*.On a more advanced level, this is known as <a href ="https://en.wikipedia.org/wiki/Optical_character_recognition">OCR</a>, that is <strong>O</strong>ptical <strong>C</strong>haracter <strong>R</strong>ecognition.</dd></dl>', True)
 
 if page ==  "Stock Analysis":
@@ -122,3 +126,26 @@ if page ==  "Stock Analysis":
         st.image("Output.png")
     except:
         "Could not obtain plot. We are trying to resolve this issue."
+
+if page == "Word Cloud Generator":
+    import pandas as pd
+    from wordcloud import WordCloud, STOPWORDS
+    st.title("Word Cloud Generator")
+    st.write(
+        "### Welcome to the word cloud generator application where you can upload a text file and we will generate a word cloud of the most frequent words in the file!",
+        "\n\nFeel free to *upload a file*\n\n***OR***\n\n*Use our file* as a demo!"
+        )
+    upload = st.sidebar.file_uploader("Upload a text file or csv file", type=['csv','txt'])
+    if(upload == None):
+        st.write(
+            "If you wish to make your own word cloud, feel free to use the file uploader in the sidebar",
+            "\n\nCurrently using our demo file"
+            )
+        data = pd.read_csv("WordCloudText.txt")
+    else:
+        data = pd.read_csv(upload.name)
+
+if page == "World Airlines":
+    import folium
+    from folium import plugins
+    import pandas as pd
